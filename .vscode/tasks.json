@@ -11,8 +11,9 @@
     {
       "label": "Markdown MCP",
       "type": "shell",
-      "command": "source .venv/bin/activate && pip install -r requirements.txt && python3 -m fastMcp/md_converter.py",
+      "command": "source .venv/bin/activate && pip install -r requirements.txt && python3 -m fastMcp.md_converter",
       "dependsOrder": "parallel",
+      "group": "build",
       "problemMatcher": []
     }
   ]
