@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "@modelcontextprotocol/server-filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/arpit/Desktop/DAKSH/Daksh_maintain/test"
+      ]
+    }
+  }
+}
