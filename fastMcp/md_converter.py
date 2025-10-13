@@ -7,7 +7,7 @@ mcp = FastMCP("File Converter MCP Server")
 @mcp.tool
 def convert(file_path: str) -> str:
     """Converts a file to markdown format."""
-    md = MarkItDown(enable_plugins=False)
+    md = MarkItDown()
     result = md.convert(file_path)
     output_file = f"{file_path.split('.')[0]}.md"
     with open(output_file, "w") as f:

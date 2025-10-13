@@ -6,7 +6,7 @@
       "type": "shell",
       "command": "if [ ! -d .git ]; then echo 'Initializing new Git repo...'; git init; fi && git add . && git commit -m 'Update documentation' && chmod +x ./run-mkdocs.sh && ./run-mkdocs.sh",
       "problemMatcher": [],
-      "group": { "kind": "build", "isDefault": true }
+      "group": { "kind": "build"}
     },
     {
       "label": "Markdown MCP",

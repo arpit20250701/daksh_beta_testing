@@ -1,0 +1,108 @@
+S No,Epic,Story,Sub Tasks,Description,Story Points,Estimated Time (hrs)
+1,Divami's work Module,"Chat Interface to fetch the company Info, relevant case studies and figma files",Chat Interface,"1. Create a chat based interface
+2. Research about the company and get the summary
+3. Fetch relevant case studies and Figma files",,
+2,Divami's work Module,Data Ingestion for Work Module,Data Ingestion,Work with design team and gather all the figma and PSD links and ingest them into the Onyx,,
+3,Tagging Module,Interface to allow tagging,,,,
+4,Auth Module,Implement Google Login component,Integrate Google OAuth SDK,"Google login button is visible and styled according to the project’s UI standards.
+On clicking the button, Google login popup appears.
+Successful login retrieves Google user details without page reload.
+On successful Google login, token is securely sent to backend.
+Loader is displayed during API calls.
+Login failure shows an appropriate error message.",1,2h
+,,,UI Implementation,,,
+,,,Handle Login Response,,,
+,,,Send Token to Backend,,,
+,,Google OAuth Token Verification,Install Dependencies,"Backend API /auth/google accepts a Google ID token.
+Token is verified with Google’s API; invalid tokens return HTTP 401.
+Existing users are fetched from the database; new users are created.
+A backend JWT is generated and returned with user details.
+JWT expiry and secret are stored in .env and not committed to Git.
+API is protected from replay attacks (tokens can’t be reused indefinitely).",1,2h
+,,,Verify Google Token,,,
+,,,User Persistence,,,
+,,,Generate Backend Session Token,,,
+,,Post-login Handling,Store Auth Token and Redirect User,"After successful login, the user is redirected to the dashboard.
+JWT is stored securely (not in plain localStorage unless unavoidable).
+Logged-in user details are visible in the UI.
+Logout clears session and redirects to login.",1,2h
+,,,Handle Logout,,,
+,,Protected Routes & Middleware,JWT Validation,"Protected routes are inaccessible without valid JWT.
+Expired/invalid JWT returns HTTP 401.
+Authenticated users can access restricted APIs.",1,2h
+,,,Protect API,,,
+,,,Token Expiry Handling,,,
+5,Case Study Listing Screen,Backend: Fetch Case Studies,Implement `/get` API to fetch case studies from DB,"• /get endpoint returns case study list with pagination.
+• Response includes ID, title, summary, tags.
+• Invalid/missing params return 400/404.
+• Unit tests cover positive and negative cases.",2,4h
+,,,Add error handling & pagination support,,,
+,,Frontend: Case Study Listing UI,Create reusable Card component,"• Card component reusable across listing and detail pages.
+• Supports title, summary, tags, and action buttons.
+• Clicking opens detailed view page.
+• Responsive across devices.",2,4h
+,,,Implement listing screen layout (grid/list),,,
+,,,Integrate API call with Axios/fetch,,,
+,,,"Handle loading, empty state & error states",,,
+6,One Pager Module,Backend: One Pager API,Implement `/post` API to accept case study payload,"• /post endpoint accepts case study ID or payload.
+• Calls Onyx assistant to generate one-pager.
+• API returns formatted response JSON.
+• Errors logged and retries attempted.
+• Unit tests ensure stable output.",3,6h
+,,,Make API call to Onyx One Pager Assistant,,,
+,,,Process & return formatted response,,,
+,,,Add error handling & retries,,,
+,,Frontend: One Pager UI,Add 'Generate One Pager' button in UI,"• Button visible on case study card and detail page.
+• Clicking triggers backend call.
+• Loader shown until response received.
+• Generated one-pager displayed in structured view.
+• Option to Save/Download as PDF/Doc.",3,6h
+,,,Handle `/post` call with case study payload,,,
+,,,Render one-pager output in a structured format,,,
+,,,Add Save/Download option,,,
+7,Business POV Module,Backend: Business POV API,Implement `/post` API to accept case study payload,"• /post endpoint accepts case study payload.
+• Calls Onyx Business POV generator.
+• Returns structured JSON with recommendations.
+• Errors handled gracefully.",3,6h
+,,,Call Onyx Business POV Assistant,,,
+,,,Process & return structured response,,,
+,,,Add error handling & logging,,,
+,,Frontend: Business POV UI,Add 'Generate Business POV' button,"• Button visible on case study detail page.
+• On click, backend call triggers.
+• Output displayed in common view component.
+• Option to Save/Share/Download.",3,6h
+,,,Call backend `/post` API with case study payload,,,
+,,,Display POV response in a structured format,,,
+,,,Add Save/Share/Download option,,,
+8,Materials View Module,Case Study View,Fetch case study details via /get API and display.,"• View page loads case study details from backend.
+• Download option available for raw case study file.
+• Dropdown for ""View Generated Materials"" lists One Pager & Business POV.
+• On selection, relevant material is fetched via /get API and displayed in common view.
+• UI supports loading, error, and empty states.
+• Download available for generated docs.",5,10h
+,,,Add Download button for case study.,,,
+,,,"Add dropdown ""View Generated Materials"" with One Pager & Business POV options.",,,
+,,,/get call to backend to fetch selected material.,,,
+,,Generated Materials Fetch,Implement `/get` API for fetching One Pager by Case Study ID,"• Dedicated endpoint for fetching generated one-pager.
+• Fetches from stored DB/cache (not regenerated).
+• Handles missing/invalid case gracefully.
+• Unit tests validate API behavior.",3,6h
+,,,Implement `/get` API for fetching Business POV by Case Study ID,,,
+,,Case Study View Page,Create common view component ,"• Component reusable for Case Study, One Pager, Business POV.
+• Implements consistent design and responsive layout.
+• Allows downloads where applicable.
+• Handles error/loading gracefully.
+• Fully tested with integration coverage.",3,10h
+,,,"On card click, route to `/case-study/:id/view`",,,
+,,,Fetch case study details via `/get` API and display,,,
+,,,Add Download button for case study,,,
+,,,"Add dropdown ""View Generated Materials"" with One Pager & Business POV options",,,
+,,,"On selection, `/get` call to backend to fetch selected material",,,
+,,,Display fetched material in the common view component,,,
+,,,Add Download option for One Pager / Business POV,,,
+,,,"Handle loading, error, and empty states",,,
+,Chat Module,Assistant selection,/post call to backend to send selected assistant to the onyx,"• User can select assistant type (One Pager, POV, etc).
+• Selection triggers /post backend API.
+• Correct assistant is invoked based on selection.
+• UI reflects current assistant choice.
+Some text indicating that Session is locked to that assitant ",2,4
