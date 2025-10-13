@@ -15,4 +15,4 @@ def convert(file_path: str) -> str:
     return f"Markdown output saved to {output_file}"
 
 if __name__ == "__main__":
-    mcp.run(transport="streamable-http")
+    mcp.run(transport="streamable-http", port=8080)
