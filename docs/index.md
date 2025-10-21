@@ -1,1 +1,2 @@
 - [ ] [Vision](vision.md)
+- [ ] [Workflow](WORKFLOW_DIAGRAM.md)
